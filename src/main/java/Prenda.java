@@ -5,45 +5,21 @@ public class Prenda {
   Material material;
   Color colorPrimario;
   Color colorSecundario;
+  Trama trama;
 
-  TipoPrenda b_tipoPrenda;
-  Material b_material;
-  Color b_colorPrimario;
-  Color b_colorSecundario;
-
-
-  public void cargarTipoPrenda(TipoPrenda tipoPrenda) {
-    this.b_tipoPrenda = tipoPrenda;
-  }
-
-  public void cargarAspecto(Material material, Color colorPrimario, Color colorSecundario) {
-    this.b_material = material;
-    this.b_colorPrimario = colorPrimario;
-    this.b_colorSecundario = colorSecundario;
-  }
-
-  public void cargarAspecto(Material material, Color colorPrimario) {
-  cargarAspecto(material,colorPrimario,null);
-  }
-
-  public void cargarAspecto(Color colorPrimario) {
-    cargarAspecto(new Material(Trama.LISA),colorPrimario,null);
-  }
-
-  public void cargarAspecto(Color colorPrimario, Color colorSecundario) {
-    cargarAspecto(new Material(Trama.LISA),colorPrimario,colorSecundario);
-  }
-
-  public void confirmarCarga() {
-    tipoPrenda = b_tipoPrenda;
-    material = b_material;
-    colorPrimario = b_colorPrimario;
-    colorSecundario = b_colorSecundario;
+  public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario, Trama trama) {
+    this.tipoPrenda = tipoPrenda;
+    this.material = material;
+    this.colorPrimario = colorPrimario;
+    this.colorSecundario = colorSecundario;
+    this.trama = trama;
   }
 
   public Categoria getCategoria() {
     return tipoPrenda.getCategoria();
   }
+
+  public Integer getTemperaturaMaxima() {return tipoPrenda.getTemperaturaMaximaAdecuada();}
 
   public TipoPrenda getTipoPrenda() {
     return tipoPrenda;

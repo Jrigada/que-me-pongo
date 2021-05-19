@@ -7,38 +7,42 @@ public class PrendaTest {
 
   TipoPrenda remera = new TipoPrenda(Categoria.PARTE_SUPERIOR);
 
-  Material lanaEstamada = new Material(Trama.ESTAMPADO);
 
   @Test
-  public void sePermiteCargarUnaPrendaSinColorSecundario() {
-    Prenda remeraRoja = new Prenda();
-    remeraRoja.cargarTipoPrenda(remera());
-    remeraRoja.cargarAspecto(lanaEstampada(),rojo());
-    remeraRoja.confirmarCarga();
-    assertEquals(remeraRoja.getColorPrimario(),rojo());
-    assertEquals(remeraRoja.getTipoPrenda(),remera());
-    assertEquals(remeraRoja.getMaterial(),lanaEstampada());
+  public void sePermiteCargarUnaPrendaSinColorSecundario() throws Exception {
+    Borrador remeraRoja = new Borrador();
+    remeraRoja.especificarTipo(remera());
+    remeraRoja.especificarMaterial(Material.LANA);
+    remeraRoja.especificarColorPrimario(rojo);
+    Prenda prendaRemeraRoja = remeraRoja.crearPrenda();
+    assertEquals(prendaRemeraRoja.getTipoPrenda(),remera());
+    assertEquals(prendaRemeraRoja.getMaterial(),Material.LANA);
+    assertEquals(prendaRemeraRoja.getColorPrimario(),rojo());
   }
 
   @Test
-  public void sePermiteCargarUnaPrendaConColorSecundario() {
-    Prenda remeraRoja = new Prenda();
-    remeraRoja.cargarTipoPrenda(remera());
-    remeraRoja.cargarAspecto(lanaEstampada(),rojo(),rojo());
-    remeraRoja.confirmarCarga();
-    assertEquals(remeraRoja.getColorPrimario(),rojo());
-    assertEquals(remeraRoja.getColorSecundario(),rojo());
-    assertEquals(remeraRoja.getTipoPrenda(),remera());
-    assertEquals(remeraRoja.getMaterial(),lanaEstampada());
+  public void sePermiteCargarUnaPrendaConColorSecundario() throws Exception {
+    Borrador remeraRoja = new Borrador();
+    remeraRoja.especificarTipo(remera());
+    remeraRoja.especificarMaterial(Material.LANA);
+    remeraRoja.especificarColorPrimario(rojo);
+    remeraRoja.especificarColorSecundario(rojo);
+    Prenda prendaRemeraRoja = remeraRoja.crearPrenda();
+    assertEquals(prendaRemeraRoja.getColorPrimario(),rojo());
+    assertEquals(prendaRemeraRoja.getColorSecundario(),rojo());
+    assertEquals(prendaRemeraRoja.getTipoPrenda(),remera());
+    assertEquals(prendaRemeraRoja.getMaterial(),Material.LANA);
   }
 
   @Test
-  public void sePermiteIdentificarLaCategoriaDeUnaPrenda() {
-    Prenda remeraRoja = new Prenda();
-    remeraRoja.cargarTipoPrenda(remera());
-    remeraRoja.cargarAspecto(lanaEstampada(),rojo());
-    remeraRoja.confirmarCarga();
-    assertEquals(remeraRoja.getCategoria(),Categoria.PARTE_SUPERIOR);
+  public void sePermiteIdentificarLaCategoriaDeUnaPrenda() throws Exception {
+    Borrador remeraRoja = new Borrador();
+    remeraRoja.especificarTipo(remera());
+    remeraRoja.especificarMaterial(Material.LANA);
+    remeraRoja.especificarColorPrimario(rojo);
+    remeraRoja.especificarColorSecundario(rojo);
+    Prenda prendaRemeraRoja = remeraRoja.crearPrenda();
+    assertEquals(prendaRemeraRoja.getCategoria(),Categoria.PARTE_SUPERIOR);
   }
 
 
@@ -50,8 +54,6 @@ public class PrendaTest {
     return remera;
   }
 
-  private Material lanaEstampada() {
-    return lanaEstamada;
-  }
+
 
 }
