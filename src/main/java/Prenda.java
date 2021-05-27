@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 import static java.util.Objects.requireNonNull;
 
 public class Prenda {
@@ -6,6 +8,7 @@ public class Prenda {
   Color colorPrimario;
   Color colorSecundario;
   Trama trama;
+  private BigDecimal tempMax;
 
   public Prenda(TipoPrenda tipoPrenda, Material material, Color colorPrimario, Color colorSecundario, Trama trama) {
     this.tipoPrenda = tipoPrenda;
@@ -13,6 +16,10 @@ public class Prenda {
     this.colorPrimario = colorPrimario;
     this.colorSecundario = colorSecundario;
     this.trama = trama;
+  }
+
+  public Boolean soyAdecuadoParaClima(BigDecimal temp) {
+    return this.tempMax.compareTo(temp) != -1;
   }
 
   public Categoria getCategoria() {

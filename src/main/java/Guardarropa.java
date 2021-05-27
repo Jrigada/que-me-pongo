@@ -1,31 +1,28 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Guardarropa {
-  List<Prenda> guardarropas = new ArrayList<>();
+  List<Prenda> prendas = new ArrayList<>();
+  private Meteorologo meteorologo;
+  private GeneradorSugerencias generador;
 
-  public void addPrenda(Prenda prenda) {
-    this.guardarropas.add(prenda);
+  public Atuendo sugerirAtuendo() {
+    BigDecimal temperatura = meteorologo.getTemperature("Buenos Aires, Argentina");
+    Atuendo atuendo = obtenerAtuendoSegunTemperatura(temperatura);
+    return atuendo;
   }
 
-  public List<Prenda> sugerenciaSimple() {
-    Integer temperaturaActual = new Meteorologo().getTemperature();
-    List<Prenda> sugerencia = new ArrayList<>();
-    sugerencia.add(sugerirParteSuperior(temperaturaActual));
-    sugerencia.add(sugerirParteInferior(temperaturaActual));
-    sugerencia.add(sugerirCalzado(temperaturaActual));
-    return sugerencia;
+  public void addPrenda(Prenda prendas) {
+    this.prendas.add(prendas);
   }
 
-  public Prenda sugerirParteSuperior(Integer temperaturaActual) {
-    return guardarropas.stream().filter(prenda->prenda.getCategoria() == Categoria.PARTE_SUPERIOR && temperaturaAdecuada(temperaturaActual, prenda)).findFirst().orElse(null);
-  }
-
-  public Prenda sugerirParteInferior(Integer temperaturaActual) {
-    return guardarropas.stream().filter(prenda->prenda.getCategoria() == Categoria.PARTE_INFERIOR&& temperaturaAdecuada(temperaturaActual, prenda)).findFirst().orElse(null);
-  }
-  public Prenda sugerirCalzado(Integer temperaturaActual) {
-    return guardarropas.stream().filter(prenda->prenda.getCategoria() == Categoria.CALZADO && temperaturaAdecuada(temperaturaActual, prenda)).findFirst().orElse(null);
+  private Atuendo obtenerAtuendoSegunTemperatura(BigDecimal temperatura) {
+    return generador.generarAtuendosDesde(
+        prendas.stream().filter(prenda -> !(prenda.soyAdecuadoParaClima(temperatura))).collect(Collectors.toList())
+    );
   }
 
   private boolean temperaturaAdecuada(Integer temperaturaActual, Prenda prenda) {

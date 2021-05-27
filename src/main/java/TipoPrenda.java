@@ -1,6 +1,5 @@
 public class TipoPrenda {
   Categoria categoria;
-  Integer temperaturaMaximaAdecuada;
 
   public Categoria getCategoria() {
     return categoria;
@@ -10,7 +9,4 @@ public class TipoPrenda {
     this.categoria = categoria;
   }
 
-  public Integer getTemperaturaMaximaAdecuada() {
-    return temperaturaMaximaAdecuada;
-  }
 }

@@ -4,6 +4,7 @@ public class Borrador {
   Color colorPrimario;
   Color colorSecundario = null;
   Trama trama = Trama.LISA;
+  private Guardarropa guardarropa;
 
   public void especificarTipo(TipoPrenda tipoPrenda) throws Exception {
     if (tipoPrenda == null) {
@@ -36,7 +37,7 @@ public class Borrador {
 
   public Prenda crearPrenda() {
     Prenda prendaCreada = new Prenda(tipoPrenda,material,colorPrimario,colorSecundario,trama);
-    new Guardarropa().addPrenda(prendaCreada);
+    guardarropa.addPrenda(prendaCreada);
     return prendaCreada;
   }
 }
