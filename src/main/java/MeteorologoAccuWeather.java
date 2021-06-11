@@ -17,4 +17,9 @@ public class MeteorologoAccuWeather implements Meteorologo{
   private Map<String,Object> consultarApi(String direccion) {
     return (Map<String, Object>) this.api.getWeather(direccion).get(0).get("Temperature");
   }
+
+  @Override
+  public Map<String, Object> getAlerta() {
+    return this.api.getAlertas();
+  }
 }

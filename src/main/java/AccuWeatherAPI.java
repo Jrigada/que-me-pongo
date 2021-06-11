@@ -20,4 +20,8 @@ public final class AccuWeatherAPI {
       }});
     }});
   }
+
+  public final Map<String, Object> getAlertas() {
+    return new HashMap<String, Object>(){ {put ("Storm", 0);}};
+  }
 }

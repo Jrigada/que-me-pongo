@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 public class Guardarropa {
   List<Prenda> prendas = new ArrayList<>();
-  private Meteorologo meteorologo;
   private GeneradorSugerencias generador;
+  private Usuario usuarioDuenio;
 
-  public Atuendo sugerirAtuendo() {
+  public Atuendo sugerirAtuendo(Meteorologo meteorologo) {
     BigDecimal temperatura = meteorologo.getTemperature("Buenos Aires, Argentina");
     Atuendo atuendo = obtenerAtuendoSegunTemperatura(temperatura);
     return atuendo;
@@ -27,5 +27,12 @@ public class Guardarropa {
 
   private boolean temperaturaAdecuada(Integer temperaturaActual, Prenda prenda) {
     return prenda.getTemperaturaMaxima() <= temperaturaActual;
+  }
+
+  public void sugerirAtuendoLluvioso(Meteorologo meteorologo) {
+  }
+
+  public void alertarUsuario(Map<String, Object> alerta) {
+    usuarioDuenio.medioContacto.notificar(alerta);
   }
 }
